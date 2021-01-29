@@ -1,0 +1,315 @@
+//Create an array of size 10 of integers. Take input //from the users for these 10 elements and print the //entire array after it
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int size=10;
+  int arr[size];
+  for(auto i=0;i<size; i++)
+  cin>>arr[i];
+
+  cout<<"Array elements are:"<<endl;
+  for(auto i =0;i<size;i++)
+  cout<<arr[i]<<" ";
+
+  return 0;
+}
+
+
+
+//check whether n is present in an array of size m or //not.
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int m,n;
+  cout<<"enter No."<<endl;
+  cin>>n;
+  cout<<"size of array? ";
+  cin>>m;
+  int *arr=new int(m);
+  for(auto i=0;i<m;i++)
+  cin>>arr[i];
+
+  bool result = false;
+  for(int i=0;i<m;i++){
+    if(n==arr[i])
+    result=true;
+      
+  }
+  if(result ==1)
+    cout<<"True"<<endl;
+  else
+    cout<<"False"<<endl;
+    
+  return 0;
+}
+
+
+
+
+
+//finding the minimum and maximum element in an array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int n;
+  cin>>n;
+
+  int *arr=new int(n);
+for(int i=0;i<n;i++)
+cin>>arr[i];
+
+int mn=INT_MAX;
+int mx=INT_MIN;
+
+for(int i=0;i<n;i++){
+  if(arr[i]>mx)
+  mx=arr[i];
+  if(arr[i]<mn)
+  mn=arr[i];
+}
+cout<<"Max Element is: "<<mx<<endl<<"Min Element is: "<<
+mn;
+
+return 0;
+}
+
+
+
+//Write a program to reverse the array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  int n;
+  cin>>n;
+
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+
+reverse(arr,arr+n);
+
+for(auto i=0;i<n;i++)
+cout<<arr[i]<<" ";
+
+return 0;
+}
+
+
+
+//write a program to sort a given array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+
+  int n;
+  cin>>n;
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+// 
+// sort(arr,arr+n);
+// Bubble sort
+  for(int i=0;i<n-1;i++){
+    for(int j=0;j<n-i-1;j++){
+      if(arr[j]>arr[j+1])
+      swap(arr[j],arr[j+1]);
+    }
+  }
+
+  for(int i=0;i<n;i++)
+  cout<<arr[i]<<" ";
+}
+
+
+
+
+//find the Kth largest and Kth smallest number in an //array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+//for sorted array
+int main(){
+  cout<<"Enter kth no."<<endl;
+  int k;
+  cin>>k;
+  cout<<"Enter size of array"<<endl;
+  int n;
+  cin>>n;
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  sort(arr,arr+n);
+
+  cout<<"Kth largest is: "<<arr[n-k]<<endl;
+  cout<<"Kth smallest is: "<<arr[k-1];
+
+
+
+return 0;
+
+}
+
+
+
+
+
+
+
+
+//given an number n. find the no. of occurence of n in the array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int x;
+  cin>>x;
+  int n;
+  cin>>n;
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  int h[100];
+  for(int i=0;i<n;i++)
+  h[arr[i]]++;
+
+cout<<"Occurence is :"<<h[x];
+    delete arr;  
+return 0;
+}
+
+
+
+
+
+
+
+
+//given an array which consist of only 0,1,2. sort the array without using any sorting algorithm
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void sort012(int arr[],int n){
+  int low=0;
+  int mid=0;
+  int high=n-1;
+
+  while(mid<=high){
+    switch(arr[mid]){
+      //element is 0
+      case 0:
+      swap(arr[low++],arr[mid++]);
+      break;
+      //element is 1
+      case 1:
+      mid++;
+      break;
+      case 2:
+      swap(arr[mid],arr[high--]);
+      break;
+    }
+  }
+}
+void print(int arr[],int n){
+  for(int i=0;i<n;i++){
+    cout<<arr[i]<<" ";
+  }
+}
+int main(){
+  int n;
+  cin>>n;
+  int *arr=new int[n];
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  sort012(arr,n);
+  cout<<"after segregation "<<endl;
+  print(arr,n);
+
+  return 0;
+  
+}
+
+
+
+
+
+
+
+
+//finding the rang of the array. range means the difference between maximum and minimum elements
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int n;
+  cin>>n;
+  int *arr = new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  int mn=INT_MAX;
+  int mx=INT_MIN;
+
+  for(int i=0;i<n;i++){
+    if(arr[i]>mx)
+    mx=arr[i];
+    if(arr[i]<mn)
+    mn=arr[i];
+  }
+  if(mn<0)
+  mn=-1*mn;
+
+  cout<<"Range Is : "<<mn+mx;
+}
+
+
+
+
+
+
+
+
+//moves all the negative elements to one side of the array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int n;
+  cin>>n;
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+
+  int j=0;
+  for(int i=0;i<n;i++){
+    if(arr[i]<0){
+      if(i!=j)
+        swap(arr[i],arr[j]);
+      
+      j++;
+    }
+  }
+
+  for(int i=0;i<n;i++)
+  cout<<arr[i]<<" ";
+  return 0;
+}
