@@ -1,0 +1,285 @@
+//find the union and intersection of two sorted array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void findunion(int arr1[],int arr2[],int m,int n ){
+  int i=0,j=0;
+
+    while(i<m && j<n){
+      if(arr1[i]<arr2[j])
+        cout<<arr1[i++]<<" ";
+
+      else if(arr2[j]<arr1[i])
+        cout<<arr2[j++]<<" ";
+      else{
+      cout<<arr1[i++]<<" ";
+      j++;
+      }
+
+    }
+
+    while(i<m)
+    cout<<arr1[i++]<<" ";
+
+    while(j<n)
+    cout<<arr2[j++]<<" " ;
+}
+
+void findinsertion(int arr1[],int arr2[], int m, int n){
+  int i=0,j=0;
+  while(i<m && j<n){
+    if(arr1[i]<arr2[j])
+      i++;
+    else if(arr2[j]<arr1[i])
+      j++;
+    else{
+      cout<<arr1[i++];
+      j++;
+    }
+  }
+}
+
+int main(){
+   int m,n;
+   cin>>m>>n;
+   int *arr1=new int[m];
+   int *arr2=new int[n];
+   
+   cout<<"array 1 elements"<<endl;
+   for(int i=0;i<m;i++)
+    cin>>arr1[i];
+
+    cout<<"array 2 elements"<<endl;
+  for(int i=0;i<n;i++)
+    cin>>arr2[i];
+  
+  sort(arr1,arr1+m);
+  // for(int i=0;i<m;i++)
+  // cout<<arr1[i];
+  sort(arr2,arr2+n);
+
+  cout<<"for union :"<<endl;
+  findunion(arr1,arr2,m,n);
+
+  cout<<endl<<"for insertion :"<<endl;
+  findinsertion(arr1,arr2,m,n);
+
+  return 0;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//program to cyclically rotate an array by one
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void rotate(int arr[], int n){
+  int temp=arr[n-1];
+  for(int i=n-1;i>0;i--)
+    arr[i]=arr[i-1];
+    arr[0]=temp;
+
+}
+
+int main(){
+  int n;
+  cin>>n;
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  cout << "Given array is \n"; 
+    for (int i = 0; i < n; i++) 
+        cout << arr[i]; 
+
+  rotate(arr,n);
+  
+  cout << "\nRotated array is\n"; 
+    for (int i = 0; i < n; i++) 
+        cout << arr[i];
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//finding the missing number in an array for a given range
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int MissingNo(int arr[],int n){
+  int total=(n+1)*(n+2)/2;
+  for(int i=0;i<n;i++)
+  total-=arr[i];
+
+  return total;
+}
+int main(){
+  int n;
+  cin>>n;
+
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  int res=MissingNo(arr,n);
+  cout<<res;
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// find all pairs on integer array whose sum is equal to given no.
+
+#include<bits/stdc++.h>
+using namespace std;
+
+ void PrintPairs_n2_method(int arr[],int n,int sum){
+   for(int i=0;i<n;i++){
+     for(int j=i+1;j<n;j++)
+      if(arr[i]+arr[j]==sum)
+      cout<<"("<<arr[i]<<","<<arr[j]<<"),"<<endl;
+   }
+ }
+
+ void PrintPairs_n_hasing(int arr[],int n,int sum){
+   int h[sum];
+   memset(h,0,sizeof(h));
+
+   for(int i=0;i<n;i++){
+     if(h[sum-arr[i]]!=0)
+      cout<<"("<<arr[i]<<","<<sum-arr[i]<<"),"<<endl;
+
+      h[arr[i]]++;
+   }
+ }
+
+ //this function is valid only for sorted array
+ void printPairs_n_method3(int arr[],int n,int sum){
+   int low=0;
+   int high=n-1;
+   while(low<high){
+     if(arr[low]+arr[high]==sum)
+      cout<<"("<<arr[low++]<<","<<arr[high--]<<"),"<<endl;
+     
+     if(arr[low]+arr[high]>sum)
+     high--;
+     else
+     low++;
+
+   }
+ }
+
+
+int main(){
+  int n;
+  cin>>n;
+
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  cout<<"Enter the sum  ";
+  int sum;
+  cin>>sum;
+
+  // PrintPairs_n2_method(arr,n,sum);
+  // PrintPairs_n_hasing(arr,n,sum);
+  // printPairs_n_method3(arr,n,sum);
+}
+
+
+
+
+
+
+
+
+
+
+
+//find duplicates in an array
+
+//different compiler pe run kro
+#include<bits/stdc++.h>
+using namespace std;
+
+void find_duplicates(int arr[],int n){
+  int h[100];
+  memset(h,0,sizeof(h));
+  for(int i=0;i<n;i++){
+    h[arr[i]]++;
+  }
+  for(int i=0;i<n;i++){
+    if(h[i]>1)
+    cout<<i<<" ";
+  }  
+}
+
+void print_duplicates(int arr[],int n){
+  
+
+  for(int i=0;i<n;i++){
+    arr[arr[i]%n]+=n;
+  }
+
+  for(int i=0;i<n;i++){
+    if(arr[i]/n>1)
+    cout<<i<<" ";
+  }
+}
+
+int main(){
+  int n;
+  cin>>n;
+  int *arr=new int(n);
+  for(int i=0;i<n;i++)
+  cin>>arr[i];
+
+  // find_duplicates(arr,n);
+  print_duplicates(arr,n);
+
+  return 0;
+}
+
+
+
+
+
+
+
