@@ -282,4 +282,227 @@ int main(){
 
 
 
+//implement quick sort algorithm
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//int partition(int *arr,int start,int end) use kr skte ha
+int partition(int arr[],int start,int end){
+  int pivot=arr[end];
+  int partition_index=start;
+
+  for(int i=start;i<end;i++){
+    if(arr[i]<=pivot){
+      swap(arr[i],arr[partition_index]);
+      partition_index++;
+    }
+  }
+  swap(arr[partition_index],arr[end]);
+
+  return partition_index;
+}
+
+
+void quick_Sort(int arr[], int start,int end){
+  if(start<end){
+    int loc=partition(arr,start,end);
+
+    quick_Sort(arr,start,loc-1);
+    quick_Sort(arr,loc+1,end);
+  }
+}
+
+int main(){
+int n;
+cin>>n;
+ int *arr=new int(n);
+ for(int i=0;i<n;i++)  cin>>arr[i];
+
+ quick_Sort(arr,0,n-1);
+
+for(int i=0;i<n;i++)
+cout<<arr[i]<<" ";
+
+  return 0;
+}
+
+
+
+
+
+
+
+//Finding common elements in three sorted arrays
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void findCommon(int arr1[],int arr2[],int arr3[],int n1,int n2,int n3){
+  int i=0,j=0,k=0;
+
+  while(i<n1 && j<n2 && k<n3){
+    if(arr1[i]==arr2[j] && arr2[j]==arr3[k]){
+    cout<<endl<<arr1[i]<<" ";
+    i++;j++;k++;
+    }
+    else if(arr1[i]<arr2[j])
+    i++;
+    else if(arr2[j]<arr3[k])
+    j++;
+    else 
+    k++;
+  }
+
+}
+
+int main()
+{
+  int n1,n2,n3;
+  cin>>n1>>n2>>n3;
+
+  int *arr1=new int[n1];
+  int *arr2=new int[n2];
+  int *arr3=new int[n3];
+
+  cout<<"enter array 1 elements"<<endl;
+  for(int i=0;i<n1;i++) cin>>arr1[i];
+  cout<<"enter array 2 elements"<<endl;
+  for(int i=0;i<n2;i++) cin>>arr2[i];
+  cout<<"enter array 3 elements"<<endl;
+  for(int i=0;i<n3;i++) cin>>arr3[i];
+
+  sort(arr1,arr1+n1);
+  sort(arr2,arr2+n2);
+  sort(arr3,arr3+n3);
+
+  findCommon(arr1,arr2,arr3,n1,n2,n3);
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+//find the first repeating elements in an array of integers
+
+#include<bits/stdc++.h>
+using namespace std;
+void printFirstRepeating(int arr[],int n){
+  int min=-1;
+  set<int> myset;
+
+  for(int i=n-1;i>=0;i--){
+    if(myset.find(arr[i])!=myset.end())
+    min=i;
+    else 
+    myset.insert(arr[i]);
+
+  }
+
+  if(min !=-1)
+  cout<<arr[min];
+  else
+  cout<<"no duplicates available";
+}
+
+int main(){
+  int arr[] = {10, 5, 3, 4, 3, 5, 6}; 
+  
+    int n = sizeof(arr) / sizeof(arr[0]); 
+
+  printFirstRepeating(arr,n);
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+//find the first non repeating elements in a given array of integer
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int firstNonRepeating(int arr[],int n){
+  unordered_map<int , int> mp;
+
+  for(int i=0;i<n;i++){
+    mp[arr[i]]++;
+  }
+
+  for(int i=0;i<n;i++){
+    if(mp[arr[i]]==1)
+        return arr[i];
+  }
+  return -1; 
+}
+int main(){
+  int arr[]={-1,2,-1,3,2};
+  int n=sizeof(arr)/sizeof(arr[0]);
+
+  cout<<firstNonRepeating(arr,n);
+}
+
+
+
+
+
+
+
+//given an array wit all distincts elements,find the largest three elements expected time complexity is O(n) and extra space is O(1)
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void largest3(int arr[],int n){
+  int first,second ,third;
+
+  if(n<3)
+  cout<<"Invalid inputs";
+
+  first=second=third=INT_MIN;
+  for(int i=0;i<n;i++){
+
+    if(arr[i]>first){
+      third=second;
+      second=first;
+      first=arr[i];
+    }
+
+    else if(arr[i]>second){
+      third=second;
+      second=arr[i];
+    }
+    else if(arr[i]>third)
+    third=arr[i];
+  }
+  cout<<first<<" "<<second<<" "<<third;
+}
+
+int main(){
+  int arr[]={10,4,3,50,23,90};
+  int n=sizeof(arr)/sizeof(arr[0]);
+
+  largest3(arr,n);
+}
+
+
+
+
+
+
+
 
