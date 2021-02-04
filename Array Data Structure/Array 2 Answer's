@@ -772,6 +772,314 @@ int main(){
 
 
 
+//find the longest consecutive sequence
+
+#include<bits/stdc++.h>
+using namespace std;
+
+// this is native approach in which we have to sort the //array so that its complexity is nlogn and addition of //other loop used
+int lon_con_Seq(int arr[],int n){
+int ans=0;int count =0;
+sort(arr,arr+n);
+
+vector<int> v;
+v.push_back(arr[0]);
+
+for(int i=1;i<n;i++){
+  if(arr[i]!=arr[i-1])
+    v.push_back(arr[i]);
+}
+
+for(int i=0;i!=v.size();i++){
+  if(i>0 && v[i]==v[i-1]+1)
+  count++;
+  else
+  count=1;
+
+  ans=max(ans,count);
+}
+return ans;
+}
+
+//we use set in which O(n) we get our solution 
+int Long_cons_seq(int arr[],int n){
+  unordered_set<int> s;
+  int ans=INT_MIN;
+
+  for(int i=0;i<n;i++)
+  s.insert(arr[i]);
+
+  for(int i=0;i<n;i++){
+    //finding the 1st in the sequence
+    if(s.find(arr[i]-1)==s.end()){
+      int j=arr[i];
+      while(s.find(j)!=s.end())  j++;
+
+      ans=max(ans,j-arr[i]);
+    }
+  }
+  return ans;
+}
+int main(){
+  int n;
+  cin>>n;
+
+  int arr[n];
+  for(int i=0;i<n;i++){
+    cin>>arr[i];
+  }
+
+  // cout<<lon_con_Seq(arr,n);
+    cout<<Long_cons_seq(arr,n);
+  return 0;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  //find the minimum element in a rotated and sorted array
+
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void find_min(int arr[],int low,int high){
+ 
+
+  while(low<high){
+    int mid=(low+high)/2;
+    if(arr[mid]==arr[high])
+    high--;
+
+    else if(arr[mid]>arr[high])
+    low=mid+1;
+
+    else
+    high=mid;
+
+  }
+  cout<<arr[high];
+}
+int main(){
+  int arr[]={5,6,7,2,3,4};
+  int n=sizeof(arr)/sizeof(arr[0]);
+
+  find_min(arr,0,n-1);
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//given an array of size n and a number k, find all elements that appear more than n/k times
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void find_nbyk(int arr[],int n,int k){
+  unordered_map<int,int> mp;
+
+  int x=n/k;
+
+  for(int i=0;i<n;i++)
+  mp[arr[i]]++;
+
+  for(auto i: mp){
+    if(i.second > x)
+    cout<<i.first<<" ";
+  }
+}
+
+int main(){
+  int n;
+  cin>>n;
+  int arr[n];
+  for(int i=0;i<n;i++)  cin>>arr[i];
+
+  int k;
+  cout<<"Enter k ";
+  cin>>k;
+
+  find_nbyk(arr,n,k);
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//gcd of the given index ranges in an array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+//solve this question using segment tree search on gfg
+
+int main(){
+  int n;
+  cin>>n;
+
+  int arr[n];
+  for(int i=0;i<n;i++) cin>>arr[i];
+
+  cout<<"Enter the starting range"<<endl;
+  int low;
+  cin>>low;
+  cout<<"Enter the ending range"<<endl;
+  int high;
+  cin>>high;
+
+  int temp=arr[low];
+  for(int i=low;i<=high;i++){
+    temp=__gcd(temp,arr[i]);
+  }
+  
+  cout<<temp;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// maximum profit by buying and selling a share at most twice
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int findMaxProfit(int pricelist[],int n){
+  int *profit=new int(n);
+  for (int i=0; i<n; i++) 
+      profit[i] = 0;
+
+  int maxPrice=pricelist[n-1];
+
+
+  for(int i=n-2;i>=0;i--){
+    if(pricelist[i]>maxPrice)
+    maxPrice=pricelist[i];
+
+    profit[i]=max(profit[i+1] , maxPrice-pricelist[i]);
+  }
+
+
+
+  int minPrice=pricelist[0];
+
+
+  for(int i=1;i<n;i++){
+    if(pricelist[i]<minPrice)
+    minPrice=pricelist[i];
+
+    profit[i]=max(profit[i-1],profit[i]+(pricelist[i]-minPrice));
+  }
+
+
+
+  int result=profit[n-1];
+
+  return result;
+}
+
+int main(){
+  int arr[]={2,30,15,10,8,25,80};
+  int n=sizeof(arr)/sizeof(arr[0]);
+
+  cout<<"Max Profit "<<findMaxProfit(arr,n);
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
