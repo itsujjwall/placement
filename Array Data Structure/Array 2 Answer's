@@ -1,3 +1,6 @@
+
+
+
 //find the union and intersection of two sorted array
 
 #include<bits/stdc++.h>
@@ -124,6 +127,7 @@ int main(){
 
 
 
+
 //finding the missing number in an array for a given range
 
 #include<bits/stdc++.h>
@@ -149,6 +153,7 @@ int main(){
 
   return 0;
 }
+
 
 
 
