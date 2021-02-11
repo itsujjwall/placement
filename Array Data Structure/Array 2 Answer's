@@ -1325,6 +1325,348 @@ int main(){
 
 
 
+//find the row withmaximum no of 1's
+//array is in sorted order
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(){
+  int arr[1000][1000];
+  int n,m;
+  cout<<"Enter m,n "<<endl;
+  cin>>n>>m;
+
+  
+  cout<<"enter elements"<<endl;
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+      cin>>arr[i][j];
+    }
+  }
+
+  int i,j;
+  for( j=0;j<m;j++)
+    for(i=0;i<n;i++)
+      if(arr[i][j]==1)
+      goto x;
+
+  x:cout<<i;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//find the median in a row wise sorted matrix
+
+#include<bits/stdc++.h>
+using namespace std;
+
+const int MAX =100;
+int binaryMedian(int arr[][MAX],int r,int c){
+  int min=INT_MAX;
+  int max=INT_MIN;
+  for(int i=0;i<r;i++){
+    //finding minimum element
+    if(arr[i][0]<min)
+    min=arr[i][0];
+
+    //finding maximum element
+    if(arr[i][c-1]>max)
+    max=arr[i][c-1];
+  }
+
+  int desired=(r*c+1)/2; //median formula
+  while(min<max){ //jb tk min value max value se jyada nahi ho jyata tb tk chalega
+  int mid=min+(max-min)/2;
+  int place=0;
+  for(int i=0;i<r;i++){
+    place+=upper_bound(arr[i],arr[i]+c,mid)-arr[i];
+  }
+  if(place<desired)
+    min=mid+1;
+
+  else
+  max=mid;
+
+  }
+return min;
+}
+int main(){
+  int r,c;
+  cin>>r>>c;
+  int arr[r][MAX];
+  for(int i=0;i<r;i++)
+    for(int j=0;j<c;j++)
+      cin>>arr[i][j];
+
+  cout<<binaryMedian(arr,r,c);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//print the matrix in spiral manner
+
+#include<bits/stdc++.h>
+using namespace std;
+
+#define R 3
+#define C 6
+void spiralPrint(int arr[R][C],int r,int c){
+  int i,k=0,l=0;
+  /*k is starting row index
+    l is starting column index
+    r is ending row index
+    c is ending column index*/
+
+  while(k<r && l<c){
+    for(i=l;i<c;i++){
+    cout<<arr[k][i]<<" ";
+    }
+    k++;
+
+    for(i=k;i<r;i++){
+      cout<<arr[i][c-1]<<" ";
+    }
+    c--;
+
+    if(k<r){
+      for(i=c-1;i>=l;i--){
+        cout<<arr[r-1][i]<<" ";
+      }
+      r--;
+    }
+
+  if(l<c){
+    for(i=r-1;i>=k;i--){
+      cout<<arr[i][l]<<" ";
+    }
+    l++;
+  }
+}
+}
+
+int main(){
+  int n,m;
+  cin>>n>>m;
+
+  int arr[R][C];
+  for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++)
+      cin>>arr[i][j];
+    
+  }
+
+
+  spiralPrint(arr,n,m);
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//find whether an array is a subset of another array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isSubset(int arr1[], int m,int arr2[], int n){
+  map<int ,int> frequency;
+
+  for(int i=0;i<m;i++)
+    frequency[arr1[i]]++;
+
+  for(int i=0;i<n;i++){
+    if(frequency[arr2[i]]>0)
+      frequency[arr2[i]]--;
+    
+    else 
+      return false;
+  }
+  return true;
+}
+
+int main(){
+  int m,n;
+  cin>>m>>n;
+
+  int arr1[m];
+  int arr2[n];
+  for(int i=0;i<m;i++) cin>>arr1[i];
+
+  for(int i=0;i<n;i++) cin>>arr2[i];
+
+  if(isSubset(arr1,m,arr2,n))
+      cout<<"arr2 is a subset of array 1";
+
+  else
+      cout<<"arr2 is not a subset of array 1";
+
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//implement two stack in an array
+
+#include<bits/stdc++.h>
+using namespace std;
+
+class twostacks{
+  int *arr;
+  int size;
+  int top1,top2;
+
+  public:
+    twostacks(int n){
+      size=n;
+      arr=new int(n);
+      top1=-1;
+      top2=size;
+    }
+
+    void push1(int x){
+      if(top1<top2-1){
+        top1++;
+        arr[top1]=x;
+      }
+      else{
+        cout<<"stack overflow"<<endl;
+        exit(1);
+      }
+    }
+    void push2(int x){
+      if(top1<top2-1){
+        top2--;
+        arr[top2]=x;
+      }
+      else{
+        cout<<"stack Overflow"<<endl;
+        exit(1);
+      }
+    }
+
+    int pop1(){
+      if(top1>=0){
+        int x=arr[top1];
+        top1--;
+        return x;
+      }
+      else{
+        cout<<"stack Underflow"<<endl;
+        exit(1);
+      }
+    }
+    int pop2(){
+      if(top2<size){
+        int x=arr[top2];
+        top2++;
+        return x;
+      }
+      else{
+        cout<<"stack underflow"<<endl;
+        exit(1);
+      }
+    }
+
+};
+int main(){
+  twostacks ts(5);
+  ts.push1(5);
+  ts.push2(10);
+  ts.push2(15);
+  ts.push1(11);
+  ts.push2(7);
+
+  cout<<"stack 1 pop element is "<<ts.pop1();
+  cout<<"stack 2 pop element is "<<ts.pop2();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------XXXXXXXXXXXXXXXXX ------------------------------------------XXXXXXXXXXXXX--------------------------------------------------------------------------
+
+
+All programs done
+
+
+
+
+
+
+
+
+
+
+
 
 
 
