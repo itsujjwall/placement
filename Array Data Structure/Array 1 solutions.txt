@@ -1,5 +1,7 @@
 //Create an array of size 10 of integers. Take input //from the users for these 10 elements and print the //entire array after it
 
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
