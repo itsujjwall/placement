@@ -1,1 +1,22 @@
 Questions
+
+. Write	a	basic	program	to	take	input	(String)	from	User	and	just	print	it.	
+	
+2. Write	a	program	to	count	the	number	of	occurrences	of	each	character	in	the	string	and	print	it.	
+
+3. Write	a	program	to	remove	all	whitespaces	in	a	given	string.	
+
+4. Find	Duplicate	characters	in	a	string.	
+
+5. Write	a	program	to	reverse	the	string	in	place.	
+
+6. Write	a	program	to	check	whether	given	two	strings	are	anagram	or	not.	
+	
+7. Why	strings	are	immutable	in	Java?	
+
+8. How	do	you	convert	string	to	integer	and	integer	to	string	in	java?	
+
+	
+9. Write	a	program	to	reverse	each	word	in	the	given	string.	
+
+10. Check	whether	the	String	is	a	palindrome	or	not.	
