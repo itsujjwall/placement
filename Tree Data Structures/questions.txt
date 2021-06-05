@@ -1,1 +1,53 @@
-Answer of the given question.
+Answer the given question.
+
+
+
+
+
+
+1. Create	a	class	Tree	consisting	of	3	members	(data,	left	pointer	and	right	
+pointer)	,	including	all	these	functions:	
+o Insertion	of	Node
+o Deletion	of	Node
+o Inorder Traversal	(Recursive	and	Iterative)
+o Preorder	Traversal	(Recursive	and	Iterative)
+o Postorder	Traversal	(Recursive	and	Iterative)
+o Level	Order	Traversal	
+o Reverse	Level	Order	traversal
+o Searching	of	Value
+o Height	of	tree
+o Diameter	of	Tree
+o Mirror	of	Tree
+o Check	tree	is	balanced	or	not
+o Find	minimum	value	in	tree
+o Find	maximum	value	in	tree
+[Follow here:	https://www.geeksforgeeks.org/binary-tree-data-structure/ ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2• Create	a	class	BST(Binary	Search	Tree)	consisting	of	3	members	(data,	
+left	pointer	and	right	pointer)	,	including	all	these	functions:	
+o Insertion	into	BST
+o Deletion	from	BST
+o Level	order	print
+o Traversal(inorder	,	preorder	and	postorder)
+o Searching	a	value	in	BST
+o Check	if	is	BST	or	not
+o Find	inorder	successor	and	inorder	predecessor
+o Print	all	root	node	to	leaf	node	paths
+o Find	min	and	max	value	in	BST
+[Follow	here: https://www.geeksforgeeks.org/binary-search-tree-data-structure/ 
